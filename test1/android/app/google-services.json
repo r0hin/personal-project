@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "101672698297",
+    "firebase_url": "https://rohin-testing.firebaseio.com",
+    "project_id": "rohin-testing",
+    "storage_bucket": "rohin-testing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101672698297:android:fddec17e63c7103f73f668",
+        "android_client_info": {
+          "package_name": "in.r0h.test1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101672698297-63ji5hcqmieud7ovhv9ggcp1vgi522vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn03v74QI-A9fiDcAeu05YTlYqHc0eF_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101672698297-63ji5hcqmieud7ovhv9ggcp1vgi522vb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "101672698297-51fo67cn70pegpkchh7kpuh4l2uan4gt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.r0h.test0"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

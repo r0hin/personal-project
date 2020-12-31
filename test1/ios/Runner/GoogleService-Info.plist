@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>101672698297-hdqe75bu78u42ugaa80gbdjn5s63bb4b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.101672698297-hdqe75bu78u42ugaa80gbdjn5s63bb4b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBB2Y3lmViNUORMGCROLSvXA5tcRel8EEw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>101672698297</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>in.r0h.test1</string>
+	<key>PROJECT_ID</key>
+	<string>rohin-testing</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rohin-testing.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:101672698297:ios:eea4fd13805fb3b573f668</string>
+	<key>DATABASE_URL</key>
+	<string>https://rohin-testing.firebaseio.com</string>
+</dict>
+</plist>
