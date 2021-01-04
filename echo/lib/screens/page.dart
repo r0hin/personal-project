@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tabs/home.dart';
+import '../tabs/account.dart';
 import '../utils/placeholder.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,8 +15,8 @@ class _PageState extends State<MainPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeTab(),
-    HomeTab(),
-    PlaceholderWidget(Colors.green)
+    PlaceholderWidget(Colors.green),
+    AccountPage(),
   ];
 
   void onTabTapped(int index) {
@@ -44,7 +45,7 @@ class _PageState extends State<MainPage> {
             label: 'Direct',
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Account')
+              icon: Icon(Icons.person), label: 'Account'),
         ],
       ),
     );

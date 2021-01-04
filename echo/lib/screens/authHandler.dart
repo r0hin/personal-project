@@ -1,42 +1,53 @@
-// import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'login.dart';
+import 'page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../utils/placeholder.dart';
 
-// // import 'page.dart';
+// import 'page.dart';
 
-// // FirebaseAuth auth = FirebaseAuth.instance;
+// FirebaseAuth auth = FirebaseAuth.instance;
 
-// // FirebaseAuth.instance
-//   // .authStateChanges()
-//   // .listen((User user) {
-//   //   if (user == null) {
-//   //     print('User is currently signed out!');
-//   //   } else {
-//   //     print('User is signed in!');
-//   //   }
-//   // });
+class AuthHandler extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return AuthHandlerState();
+  }
+}
 
-// class AuthHandler extends StatefulWidget {
-//   @override
-//   _AuthHandlerState createState() => _AuthHandlerState();
-// }
+class AuthHandlerState extends State<AuthHandler> {
+  int _currentIndex = 2;
 
-// class _AuthHandlerState extends State<AuthHandler> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//       future: FirebaseAuth.,
-//       builder: (context, snapshot) {
-//         if (snapshot.hasError) {
-//           // Could not connect
-//           return new Text("Error occured", textDirection: TextDirection.ltr);
-//         }
-//         // Once complete, show your application
-//         if (snapshot.connectionState == ConnectionState.done) {
-//           // return MyApp();
-//         }
+  void initState() {
+    FirebaseAuth.instance.authStateChanges().listen((User user) {
+      if (user == null) {
+        _currentIndex = 1;
+        onTabTapped(1);
+        print('User is currently signed out!');
+      } else {
+        onTabTapped(0);
+        print('User is signed in!');
+      }
+    });
+    super.initState();
+  }
 
-//         return new Text("Loading", textDirection: TextDirection.ltr);
-//       },
-//     );
-//   }
-// }
+  final List<Widget> _children = [
+    MainPage(),
+    LoginScreen(),
+    PlaceholderWidget(Colors.blue),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _children[_currentIndex],
+    );
+  }
+}

@@ -9,23 +9,53 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   // Get recent posts to build.
 
-  Future<void> initState() async {
+  List<Widget> posts = [];
+
+  Future<void> getAllPosts() async {
     QuerySnapshot postsDocs = await FirebaseFirestore.instance
         .collection('new_posts')
         .where('status', isEqualTo: true)
-        .orderBy('timestamp')
+        .orderBy('timestamp', descending: true)
         .limit(3)
         .get();
 
-    print(postsDocs.docs.toString());
-
-    super.initState();
+    for (var i = 0; i < postsDocs.docs.length; i++) {
+      if (postsDocs.docs[i].data()['file_url'] == 'echo-home-text_post') {
+        setState(() {
+          posts.add(Container(
+              width: double.infinity,
+              child: Text(postsDocs.docs[i].data()['url_content'],
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                  ))));
+        });
+      } else {
+        setState(() {
+          posts.add(Container(
+              width: double.infinity,
+              child: Image.network(postsDocs.docs[i].data()['file_url'])));
+        });
+      }
+    }
+    print(posts);
   }
 
-  List<Widget> posts = [];
+  void initState() {
+    super.initState();
+    getAllPosts();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: posts);
+    return Container(
+      padding: EdgeInsets.all(15.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: posts,
+        ),
+      ),
+    );
   }
 }
