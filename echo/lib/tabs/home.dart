@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../utils/components.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -33,9 +34,11 @@ class _HomeTabState extends State<HomeTab> {
         });
       } else {
         setState(() {
-          posts.add(Container(
-              width: double.infinity,
-              child: Image.network(postsDocs.docs[i].data()['file_url'])));
+          posts.add(EchoPost(
+            img: postsDocs.docs[i].data()['file_url'],
+            caption: postsDocs.docs[i].data()['caption'],
+            author: postsDocs.docs[i].data()['name'],
+          ));
         });
       }
     }

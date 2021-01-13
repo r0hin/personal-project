@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tabs/home.dart';
+import '../tabs/direct.dart';
 import '../tabs/account.dart';
 import '../utils/placeholder.dart';
 
@@ -15,7 +16,7 @@ class _PageState extends State<MainPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeTab(),
-    PlaceholderWidget(Colors.green),
+    DirectPage(),
     AccountPage(),
   ];
 
