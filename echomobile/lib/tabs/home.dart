@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../utils/components.dart';
 
@@ -21,6 +22,19 @@ class _HomeTabState extends State<HomeTab> {
         .get();
 
     for (var i = 0; i < postsDocs.docs.length; i++) {
+      // Check if liked or not
+      bool isLiked = false;
+      DocumentSnapshot likedDoc = await FirebaseFirestore.instance
+          .collection('new_posts')
+          .doc(postsDocs.docs[i].id)
+          .collection('likes')
+          .doc(FirebaseAuth.instance.currentUser.uid)
+          .get();
+
+      if (likedDoc.exists && likedDoc.data()['status']) {
+        isLiked = true;
+      }
+
       if (postsDocs.docs[i].data()['file_url'] == 'echo-home-text_post') {
         setState(() {
           posts.add(Container(
@@ -38,6 +52,9 @@ class _HomeTabState extends State<HomeTab> {
             img: postsDocs.docs[i].data()['file_url'],
             caption: postsDocs.docs[i].data()['caption'],
             author: postsDocs.docs[i].data()['name'],
+            id: postsDocs.docs[i].id,
+            likes: postsDocs.docs[i].data()['likes'],
+            isLiked: isLiked,
           ));
         });
       }
