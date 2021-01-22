@@ -1,117 +1,112 @@
-# Miscellaneous
-*.class
-*.lock
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
+# Xcode
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+!**/*.xcsettings
+!**/*.xcscheme
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
+# Gradle
+/build/
+/packages/react-native-codegen/android/build/
+/packages/react-native-codegen/android/gradlePlugin-build/gradlePlugin/build
+/packages/rn-tester/android/app/.cxx/
+/packages/rn-tester/android/app/build/
+/packages/rn-tester/android/app/gradle/
+/packages/rn-tester/android/app/gradlew
+/packages/rn-tester/android/app/gradlew.bat
+/ReactAndroid/build/
+/ReactAndroid/gradle/
+/ReactAndroid/gradlew
+/ReactAndroid/gradlew.bat
 
-# Visual Studio Code related
-.classpath
+# Buck
+.buckd
+buck-out
+/.lsp.buckd
+/.lsp-buck-out
+/ReactAndroid/src/main/jni/prebuilt/lib/
+/ReactAndroid/src/main/gen
+
+# Android Studio
 .project
-.settings/
-.vscode/
+.settings
+.classpath
 
-# Flutter repo-specific
-/bin/cache/
-/bin/internal/bootstrap.bat
-/bin/internal/bootstrap.sh
-/bin/mingit/
-/dev/benchmarks/mega_gallery/
-/dev/bots/.recipe_deps
-/dev/bots/android_tools/
-/dev/devicelab/ABresults*.json
-/dev/docs/doc/
-/dev/docs/flutter.docs.zip
-/dev/docs/lib/
-/dev/docs/pubspec.yaml
-/dev/integration_tests/**/xcuserdata
-/dev/integration_tests/**/Pods
-/packages/flutter/coverage/
-version
-analysis_benchmark.json
+# Watchman
+.watchmanconfig
 
-# packages file containing multi-root paths
-.packages.generated
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+/android/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-**/generated_plugin_registrant.dart
-.packages
-.pub-cache/
-.pub/
-build/
-flutter_*.png
-linked_*.ds
-unlinked.ds
-unlinked_spec.ds
+# Node
+node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
 
-# Android related
-**/android/**/gradle-wrapper.jar
-**/android/.gradle
-**/android/captures/
-**/android/gradlew
-**/android/gradlew.bat
-**/android/local.properties
-**/android/**/GeneratedPluginRegistrant.java
-**/android/key.properties
-*.jks
+# OS X
+.DS_Store
 
-# iOS/XCode related
-**/ios/**/*.mode1v3
-**/ios/**/*.mode2v3
-**/ios/**/*.moved-aside
-**/ios/**/*.pbxuser
-**/ios/**/*.perspectivev3
-**/ios/**/*sync/
-**/ios/**/.sconsign.dblite
-**/ios/**/.tags*
-**/ios/**/.vagrant/
-**/ios/**/DerivedData/
-**/ios/**/Icon?
-**/ios/**/Pods/
-**/ios/**/.symlinks/
-**/ios/**/profile
-**/ios/**/xcuserdata
-**/ios/.generated/
-**/ios/Flutter/.last_build_id
-**/ios/Flutter/App.framework
-**/ios/Flutter/Flutter.framework
-**/ios/Flutter/Flutter.podspec
-**/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/app.flx
-**/ios/Flutter/app.zip
-**/ios/Flutter/flutter_assets/
-**/ios/Flutter/flutter_export_environment.sh
-**/ios/ServiceDefinitions.json
-**/ios/Runner/GeneratedPluginRegistrant.*
+# Test generated files
+/ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
+*.js.meta
 
-# macOS
-**/macos/Flutter/GeneratedPluginRegistrant.swift
+/coverage
+/third-party
 
-# Coverage
-coverage/
+# Root dir shouldn't have Xcode project
+/*.xcodeproj
 
-# Symbols
-app.*.symbols
+# ReactCommon subdir shouldn't have Xcode project
+/ReactCommon/**/*.xcodeproj
+/packages/rn-tester/build
+/packages/rn-tester/android/app/build/*
 
-# Exceptions to above rules.
-!**/ios/**/default.mode1v3
-!**/ios/**/default.mode2v3
-!**/ios/**/default.pbxuser
-!**/ios/**/default.perspectivev3
-!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-!/dev/ci/**/Gemfile.lock
+# Libs that shouldn't have Xcode project
+/Libraries/FBLazyVector/**/*.xcodeproj
+/Libraries/FBReactNativeSpec/**/*.xcodeproj
+/Libraries/RCTRequired/**/*.xcodeproj
+/React/CoreModules/**/*.xcodeproj
+/packages/react-native-codegen/**/*.xcodeproj
+
+# CocoaPods
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/packages/rn-tester/Gemfile.lock
+
+# Ignore RNTester specific Pods, but keep the __offline_mirrors__ here.
+/packages/rn-tester/Pods/*
+!/packages/rn-tester/Pods/__offline_mirrors__
+
+# react-native-codegen
+/Libraries/FBReactNativeSpec/FBReactNativeSpec
+/packages/react-native-codegen/lib
+/ReactCommon/react/renderer/components/rncore/
+
+# Visual studio
+.vscode
+.vs
+
+# Android memory profiler files
+*.hprof
