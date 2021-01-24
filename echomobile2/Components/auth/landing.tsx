@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useFonts, Ubuntu_400Regular } from '@expo-google-fonts/ubuntu';
-
 import { Button, TextInput, Portal, Dialog, Paragraph} from 'react-native-paper';
 
 import * as firebase from 'firebase';
@@ -39,17 +38,19 @@ export default function Landing() {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Image style={styles.image} source={colors.card === 'rgb(255, 255, 255)' ? require('../../assets/Light.png') : require('../../assets/Dark.png')}></Image>
-      <br /><br />
-      <TextInput mode='outlined' label="Email" value={email} onChangeText={text => setEmail(text)} />
-      <br />
-      <TextInput mode='outlined' secureTextEntry={true} label="Password" value={password} onChangeText={text => setPassword(text)} />
-      <br /><br />
+    <View style={{ flex: 1, padding: 32, justifyContent: 'center' }}>
+      <View style={{alignItems: 'center', paddingBottom: 12}}>
+        <Image style={styles.image} source={colors.card === 'rgb(255, 255, 255)' ? require('../../assets/Light.png') : require('../../assets/Dark.png')}></Image>
+      </View>
+
+      <TextInput style={{paddingBottom: 6}} mode='outlined' label="Email" value={email} onChangeText={text => setEmail(text)} />
+
+      <TextInput style={{paddingBottom: 12}} mode='outlined' secureTextEntry={true} label="Password" value={password} onChangeText={text => setPassword(text)} />
+
       <Button onPress={login} mode='contained'> Login </Button> 
-      <br />
+
       <Text style={[styles.or, {color: colors.text}]}>- or -</Text>
-      <br />
+
       <Button onPress={signup} mode='text'> Sign Up </Button>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
@@ -72,6 +73,8 @@ const styles = StyleSheet.create({
     height: 100,
   },
   or: {
+    padding: 12,
+    textAlign: 'center',
     fontFamily: 'Ubuntu_400Regular',
   }
 });

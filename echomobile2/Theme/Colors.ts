@@ -13,7 +13,7 @@ export const LightMode = {
 
     card: 'rgb(255, 255, 255)',
     text: 'rgb(28, 28, 30)',
-    border: 'rgb(199, 199, 204)',
+    border: 'rgba(199, 199, 204, 0)',
     notification: 'rgb(143, 58, 255)',
   },
 };
@@ -31,7 +31,7 @@ export const DarkMode = {
 
     card: 'rgb(20, 23, 26)',
     text: 'rgb(245, 248, 250)',
-    border: 'rgb(199, 199, 204)',
+    border: 'rgba(199, 199, 204, 0)',
     notification: 'rgb(143, 58, 255)',
   },
 };
