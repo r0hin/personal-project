@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import { useTheme } from "@react-navigation/native";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { StyleProp, ViewStyle, ImageRequireSource, View, StyleSheet } from "react-native";
 import { TabItem } from './tabItem';
 
 export interface TabBarProps {
   style?: StyleProp<ViewStyle>;
-  items: { icon: JSX.Element; label: string }[];
+  items: { icon: JSX.Element; label: string}[];
+  modifyFunction: (Dispatch<SetStateAction<number>>);
 }
 
-export const TabBar: React.FC<TabBarProps> = ({ style, items }) => {
+export const TabBar: React.FC<TabBarProps> = ({ style, items, modifyFunction }) => {
+  const {colors} = useTheme();
+  
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <View style={[styles.bar, style]}>
+    //@ts-ignore (Theme)
+    <View style={[styles.bar, style, {backgroundColor: colors.background2}]}>
       {items.map((it, index) => (
         <TabItem
           key={index}
@@ -18,7 +23,7 @@ export const TabBar: React.FC<TabBarProps> = ({ style, items }) => {
           icon={it.icon}
           label={it.label}
           active={index === activeIndex}
-          onPress={() => setActiveIndex(index)}
+          onPress={() => {setActiveIndex(index); modifyFunction(index)}}
         />
       ))}
     </View>
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
     height: 60,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    backgroundColor: "white",
     overflow: "hidden",
   },
   item: {

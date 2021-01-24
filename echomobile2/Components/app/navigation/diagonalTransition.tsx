@@ -1,3 +1,4 @@
+import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { StyleProp, ViewStyle, Animated, View, StyleSheet} from "react-native";
 
@@ -13,6 +14,11 @@ export const DiagonalTransition: React.FC<DiagonalTransitionProps> = ({
   coverColor = "white",
   children,
 }) => {
+  const {colors} = useTheme();
+  
+  //@ts-ignore (Theme)
+  coverColor = colors.background1
+
   const translateY = visibility.interpolate({ inputRange: [0, 1], outputRange: [-30, 0] });
   return (
     <View style={[styles.container, style]}>

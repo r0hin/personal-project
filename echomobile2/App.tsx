@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { AppLoading } from 'expo'
 
 import { auth } from './Components/auth/Firebase';
 import AuthUserContext, { AuthUserProvider } from './Components/auth/AuthUserProvider';
@@ -14,6 +15,9 @@ import Home from './Components/app/Home';
 import Loader from './Components/auth/Loading';
 import { LightMode, DarkMode } from './Theme/Colors';
 import { useContext, useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
+
 
 const Stack = createStackNavigator();
 
@@ -22,6 +26,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showHome, setShowHome] = useState(true);
   const colorScheme = useColorScheme();
+
+  let [fontsLoaded, error] = useFonts({ 
+    Ubuntu_400Regular,
+    Ubuntu_700Bold
+  })
+
   useEffect(() => {
     setIsLoading(true);
     // onAuthStateChanged returns an unsubscriber
@@ -58,6 +68,7 @@ function App() {
   if (showHome) {
     return (
       <AuthUserProvider>
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         <PaperProvider>
           <AppearanceProvider>
             <NavigationContainer theme={colorScheme === 'dark' ? DarkMode : LightMode}>
@@ -73,6 +84,7 @@ function App() {
 
   return (
     <AuthUserProvider>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <PaperProvider>
         <AppearanceProvider>
           <NavigationContainer theme={colorScheme === 'dark' ? DarkMode : LightMode}>
@@ -84,8 +96,6 @@ function App() {
       </PaperProvider>
     </AuthUserProvider>
   );
-
-  
 }
 
 export default App;
