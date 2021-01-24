@@ -1,5 +1,4 @@
 import React, { useState, createContext } from 'react';
-var user: any, setUser: any;
 
 const AuthUserContext = React.createContext({
   user: undefined,
@@ -9,7 +8,7 @@ export default AuthUserContext;
 
 export const AuthUserProvider = ({ children } : {children: any}) => {
   return (
-    <AuthUserContext.Provider value={{ user: undefined, setUser: (user: firebase.User | null) => {} }}>
+    <AuthUserContext.Provider value={{ user: undefined, setUser: (user: firebase.User | null) => {}}}>
       {children}
     </AuthUserContext.Provider>
   );

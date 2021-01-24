@@ -16,13 +16,40 @@ import TabExplore from './screens/TabExplore'
 import TabInbox from './screens/TabInbox'
 import TabAccount from './screens/TabAccount'
 
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore'
+const user = firebase.auth().currentUser
+const db = firebase.firestore()
+import Unverified from '../auth/Unverified';
+import CompleteProfile from '../auth/completeProfile';
+
 export default function Home() {
 
-  const [remountCount, setRemountCount] = useState(0);
-  const refresh = () => setRemountCount(remountCount + 1);
+  const [profileComplete, setProfileComplete] = useState(false);
   const {colors} = useTheme();
   const [activeTab, setActiveTab] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [emailVerify, setEmailVerify] = useState(firebase.auth().currentUser?.emailVerified);
 
+
+  useEffect(() => {
+    if (firebase.auth().currentUser !== null) {
+      if (firebase.auth().currentUser?.displayName) {
+        setIsLoading(false)
+        setProfileComplete(true)
+      }
+      else {
+        setIsLoading(false)
+        setProfileComplete(false)
+      }
+      console.log('New Firebase Request');
+      // console.trace('New Firebase Request!')
+    }
+    else {
+      console.log('Exuse me?????? home but not signed in');
+    }
+  })
   // useEffect(() => {
   //   setActiveTab(0)
   // },)
@@ -45,28 +72,47 @@ export default function Home() {
     label: 'Account',
   }]
 
-  return (
-    <View style={{flex: 1}}>
-      <ScrollView>
-        { activeTab === 0 && 
-          <TabHome colors={colors}/>
-        }
-        { activeTab === 1 && 
-          <TabExplore colors={colors} />
-        }
-        { activeTab === 2 && 
-          <TabInbox colors={colors} />
-        }
-        { activeTab === 3 && 
-          <TabAccount colors={colors} />
-        }
-      </ScrollView>
-      <TabBar style={styles.tabBar} items={tabItems} modifyFunction={setActiveTab}></TabBar>
-      <View style={[styles.bottomBar, {
-        // @ts-ignore (Theme)
-        backgroundColor: colors.background2}]}></View>
-    </View>
-  )
+  if (isLoading) {
+    return (
+      <Text style={{color: colors.text}}>Still Loading...</Text>
+    )
+  }
+  else {
+    return (
+      <View style={{height: '100%'}} >
+        {emailVerify ?
+        // is the profile complete?
+        <View style={{height: '100%'}} >
+          {profileComplete ? 
+          <View style={{flex: 1}}>
+            <ScrollView>
+              { activeTab === 0 && 
+                <TabHome colors={colors}/>
+              }
+              { activeTab === 1 && 
+                <TabExplore colors={colors} />
+              }
+              { activeTab === 2 && 
+                <TabInbox colors={colors} />
+              }
+              { activeTab === 3 && 
+                <TabAccount colors={colors} />
+              }
+            </ScrollView>
+            <TabBar style={styles.tabBar} items={tabItems} modifyFunction={setActiveTab}></TabBar>
+            <View style={[styles.bottomBar, {
+              // @ts-ignore (Theme)
+              backgroundColor: colors.background2}]}></View>
+          </View> :
+          <CompleteProfile modifyFunction={setProfileComplete} colors={colors} />
+          }
+        </View>
+        :
+        <Unverified modifyFunction={setEmailVerify} colors={colors}/>
+      }
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

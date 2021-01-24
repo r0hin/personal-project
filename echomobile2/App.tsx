@@ -12,13 +12,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Landing from './Components/auth/Landing';
 import Home from './Components/app/Home';
-import Loader from './Components/auth/Loading';
 import { LightMode, DarkMode } from './Theme/Colors';
 import { useContext, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore';
+import CompleteProfile from './Components/auth/completeProfile';
 
+const db = firebase.firestore()
 const Stack = createStackNavigator();
 
 function App() {
@@ -37,8 +41,7 @@ function App() {
     // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = auth.onAuthStateChanged(async authUser => {
       try {
-        console.log('Signed in CHANGED!');
-        console.log(authUser)
+        console.log('New User!');
         await (authUser ? setUser(authUser) : setUser(null));
         setIsLoading(false);
       } catch (error) {

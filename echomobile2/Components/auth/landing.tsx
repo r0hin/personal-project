@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useFonts, Ubuntu_400Regular } from '@expo-google-fonts/ubuntu';
 import { Button, TextInput, Portal, Dialog, Paragraph} from 'react-native-paper';
@@ -32,13 +32,18 @@ export default function Landing() {
     }
   }
 
-  function signup() {
-    showDialog()
-    console.log(`signup with ${email} and ${password}`);
+  async function signup() {
+    try {
+      await auth.createUserWithEmailAndPassword(email, password)
+      console.log('Probably signed in. No state changes though !');
+    } catch (error) {
+      setErrorText(error.message)
+      showDialog()
+    }
   }
 
   return (
-    <View style={{ flex: 1, padding: 32, justifyContent: 'center' }}>
+    <ScrollView contentContainerStyle={{ flex: 1, padding: 32, justifyContent: 'center' }}>
       <View style={{alignItems: 'center', paddingBottom: 12}}>
         <Image style={styles.image} source={colors.card === 'rgb(255, 255, 255)' ? require('../../assets/Light.png') : require('../../assets/Dark.png')}></Image>
       </View>
@@ -63,7 +68,7 @@ export default function Landing() {
           </Dialog.Actions>
         </Dialog>
       </Portal>
-    </View>
+    </ScrollView>
   )
 }
 
