@@ -1,4 +1,7 @@
+import { DefaultTheme} from 'react-native-paper';
+
 export const LightMode = {
+  ...DefaultTheme,
   dark: false,
   colors: {
     background: 'rgb(255, 255, 255)',
@@ -16,11 +19,12 @@ export const LightMode = {
 };
 
 export const DarkMode = {
+  ...DefaultTheme,
   dark: true,
   colors: {
-    background: 'rgb(23, 32, 42)',
-    background2: 'rgb(28, 39, 51)',
-    background3: 'rgb(37, 48, 59)',
+    background: 'rgb(31, 33, 40)',
+    background2: 'rgb(36, 38, 46)',
+    background3: 'rgb(46, 49, 59)',
 
     primary: 'rgb(51, 147, 226)',
     secondary: '#4548fc',
