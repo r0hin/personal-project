@@ -1,4 +1,71 @@
-import { DefaultTheme} from 'react-native-paper';
+import { DefaultTheme, configureFonts, DarkTheme} from 'react-native-paper';
+
+const fonts = configureFonts({
+  web: {
+    regular: {
+      fontFamily: 'Ubuntu_400Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Ubuntu_500Medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'Ubuntu_300Light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'Ubuntu_300Light',
+      fontWeight: 'normal',
+    },
+  },
+  ios: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+  android: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  }
+})
+
+export const LightModePaper = {
+  ...DefaultTheme,
+  fonts: fonts,
+}
+
+export const DarkModePaper = {
+  ...DarkTheme,
+  fonts: fonts,
+}
 
 export const LightMode = {
   ...DefaultTheme,

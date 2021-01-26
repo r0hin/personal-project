@@ -12,15 +12,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Landing from './Components/auth/Landing';
 import Home from './Components/app/Home';
-import { LightMode, DarkMode } from './Theme/Colors';
+import { LightMode, DarkMode, LightModePaper, DarkModePaper } from './Theme/Colors';
 import { useContext, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
+import { useFonts, Ubuntu_400Regular, Ubuntu_300Light, Ubuntu_500Medium, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 
 import * as firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
-import CompleteProfile from './Components/auth/completeProfile';
 
 const db = firebase.firestore()
 const Stack = createStackNavigator();
@@ -33,7 +32,9 @@ function App() {
 
   let [fontsLoaded, error] = useFonts({ 
     Ubuntu_400Regular,
-    Ubuntu_700Bold
+    Ubuntu_700Bold,
+    Ubuntu_300Light,
+    Ubuntu_500Medium,
   })
 
   useEffect(() => {
@@ -72,7 +73,7 @@ function App() {
     return (
       <AuthUserProvider>
         <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
-        <PaperProvider>
+        <PaperProvider theme={colorScheme === 'dark' ? DarkModePaper : LightModePaper}>
           <AppearanceProvider>
             <NavigationContainer theme={colorScheme === 'dark' ? DarkMode : LightMode}>
               <Stack.Navigator initialRouteName="Landing" screenOptions={{headerShown: false}}>
