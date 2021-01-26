@@ -1,14 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, Dispatch, SetStateAction } from 'react';
 import { View, StyleSheet, Text, Animated } from 'react-native';
+import { Post } from '../../../Theme/Types'
 import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 
 export interface TabHomeProps {
-  colors: any
+  colors: any,
+  posts: Post[],
+  setPosts: Dispatch<SetStateAction<Post[]>>,
 }
  
-class TabHome extends Component<TabHomeProps> {
-  state = {
-    opacity: new Animated.Value(0),
+export interface TabHomeState {
+  opacity: Animated.Value,
+}
+
+class TabHome extends Component<TabHomeProps, TabHomeState> {
+  state: TabHomeState
+
+  constructor(props: TabHomeProps) {
+    super(props);
+    this.state = {
+      opacity: new Animated.Value(0),
+    }
   }
 
   componentDidMount() {
@@ -19,6 +31,7 @@ class TabHome extends Component<TabHomeProps> {
     }).start();
   }
 
+
   render() {
     const styles = StyleSheet.create({
       title: {
@@ -28,11 +41,20 @@ class TabHome extends Component<TabHomeProps> {
         fontFamily: 'Ubuntu_700Bold',
       },
     })
+
     const colors = this.props.colors
 
     return (
       <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
         <Text style={[styles.title, {color: colors.text}]}>Home</Text>
+
+        {this.props.posts.map(station => {
+          return (
+          <View key={station.call}> 
+            <Text>{station.frequency}</Text>
+          </View> 
+          )
+        })} 
       </Animated.View>
     );
   }

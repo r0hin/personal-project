@@ -5,7 +5,7 @@ import { useFonts, Ubuntu_400Regular } from '@expo-google-fonts/ubuntu';
 import { Feather } from '@expo/vector-icons';
 import { Button, TextInput } from 'react-native-paper';
 import { AppLoading, Font } from 'expo'
-
+import { useComponentDidMount} from "../../Theme/Utils";
 
 import {TabBar} from './navigation/tabBar'
 import { logout } from '../auth/Firebase';
@@ -23,6 +23,7 @@ const user = firebase.auth().currentUser
 const db = firebase.firestore()
 import Unverified from '../auth/Unverified';
 import CompleteProfile from '../auth/completeProfile';
+import { Post } from '../../Theme/Types';
 
 export default function Home() {
 
@@ -32,6 +33,16 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [emailVerify, setEmailVerify] = useState(firebase.auth().currentUser?.emailVerified);
 
+  // Refresh contexts
+  const [relevantPosts, setRelevantPosts] = useState<Post[]>([]);
+
+  useComponentDidMount(() => {
+    setRelevantPosts([
+      {call: '01', frequency: '01' },
+      {call: '02', frequency: '02' },
+    ])
+    console.log("Component did mount!");
+  });
 
   useEffect(() => {
     if (firebase.auth().currentUser !== null) {
@@ -43,11 +54,6 @@ export default function Home() {
         setIsLoading(false)
         setProfileComplete(false)
       }
-      console.log('New Firebase Request');
-      // console.trace('New Firebase Request!')
-    }
-    else {
-      console.log('Exuse me?????? home but not signed in');
     }
   })
   // useEffect(() => {
@@ -87,7 +93,7 @@ export default function Home() {
           <View style={{flex: 1}}>
             <ScrollView>
               { activeTab === 0 && 
-                <TabHome colors={colors}/>
+                <TabHome posts={relevantPosts} setPosts={setRelevantPosts} colors={colors}/>
               }
               { activeTab === 1 && 
                 <TabExplore colors={colors} />
