@@ -1,4 +1,11 @@
 export interface Post {
-  call: string,
-  frequency: string,
+  id: string,
+  caption: string,
+  comments: number,
+
+  file_name: string,
+  file_url: string
+  
+
+
 }

@@ -37,9 +37,11 @@ export default function Home() {
   const [relevantPosts, setRelevantPosts] = useState<Post[]>([]);
 
   useComponentDidMount(() => {
+
+    // Make requests but i dont want to do it during development so im going to make an example one 
     setRelevantPosts([
-      {call: '01', frequency: '01' },
-      {call: '02', frequency: '02' },
+      // {id: ''},
+      // {id: '02'},
     ])
     console.log("Component did mount!");
   });
