@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, Animated } from 'react-native';
 import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 
 export interface TabExploreProps {
-  colors: any
+  colors: any,
+  shown: boolean,
 }
  
 class TabExplore extends Component<TabExploreProps> {
@@ -31,9 +32,11 @@ class TabExplore extends Component<TabExploreProps> {
     const colors = this.props.colors
 
     return (
-      <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
-        <Text style={[styles.title, {color: colors.text}]}>Explore</Text>
-      </Animated.View>
+      <View style={{display: this.props.shown ? 'flex' : 'none'}}>
+        <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
+          <Text style={[styles.title, {color: colors.text}]}>Explore</Text>
+        </Animated.View>
+      </View>
     );
   }
 }

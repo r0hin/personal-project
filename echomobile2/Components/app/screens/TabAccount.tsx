@@ -6,7 +6,8 @@ import { Button } from 'react-native-paper';
 
 
 export interface TabAccountProps {
-  colors: any
+  colors: any,
+  shown: boolean,
 }
  
 class TabAccount extends Component<TabAccountProps> {
@@ -42,12 +43,14 @@ class TabAccount extends Component<TabAccountProps> {
     const colors = this.props.colors
 
     return (
-      <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
-        <Text style={[styles.title, {color: colors.text}]}>Account</Text>
-        <View style={styles.container}>
-          <Button style={styles.signOutButton} onPress={logout} mode="outlined">Sign Out</Button>
-        </View>
-      </Animated.View>
+      <View style={{display: this.props.shown ? 'flex' : 'none'}}>
+        <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
+          <Text style={[styles.title, {color: colors.text}]}>Account</Text>
+          <View style={styles.container}>
+            <Button style={styles.signOutButton} onPress={logout} mode="outlined">Sign Out</Button>
+          </View>
+        </Animated.View>
+      </View>
     );
   }
 }

@@ -6,29 +6,59 @@ import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/
 export interface TabHomeProps {
   colors: any,
   posts: Post[],
-  setPosts: Dispatch<SetStateAction<Post[]>>,
+  setOwnMounted: Dispatch<SetStateAction<boolean>>,
+  shown: boolean,
 }
  
 export interface TabHomeState {
   opacity: Animated.Value,
+  posts: Post[],
+  postUpdate: number,
+  onFirst: boolean,
 }
 
 class TabHome extends Component<TabHomeProps, TabHomeState> {
-  state: TabHomeState
+  state: TabHomeState = {
+    opacity: new Animated.Value(0),
+    posts: [],
+    postUpdate: 0,
+    onFirst: true,
+    
+  }
 
-  constructor(props: TabHomeProps) {
-    super(props);
-    this.state = {
-      opacity: new Animated.Value(0),
-    }
+  shouldComponentUpdate() {
+    return true
+  }
+
+  componentDidUpdate(prevProps: any) {
+    console.log(this.props);
   }
 
   componentDidMount() {
-    Animated.timing(this.state.opacity, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
+    if (this.state.onFirst) {
+
+      Animated.timing(this.state.opacity, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+  
+      setTimeout(() => {
+        this.setState({
+          onFirst: false,
+        })
+      }, 200);
+
+      this.props.setOwnMounted(true)
+      console.log('Mount call.');
+    }
+    else {
+      Animated.timing(this.state.opacity, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).reset();
+    }
   }
 
 
@@ -45,17 +75,19 @@ class TabHome extends Component<TabHomeProps, TabHomeState> {
     const colors = this.props.colors
 
     return (
-      <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
-        <Text style={[styles.title, {color: colors.text}]}>Home</Text>
+      <View style={{display: this.props.shown ? 'flex' : 'none'}}>
+        <Animated.View {...this.props} style={this.state.onFirst && [ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
+          <Text style={[styles.title, {color: colors.text}]}>Home</Text>
+        </Animated.View>
 
-        {this.props.posts.map(station => {
+        {this.props.posts.map(post => {
           return (
-          <View key={station.call}> 
-            <Text>{station.frequency}</Text>
+          <View key={post.id}> 
+            <Text>{post.caption}</Text>
           </View> 
           )
         })} 
-      </Animated.View>
+      </View>
     );
   }
 }

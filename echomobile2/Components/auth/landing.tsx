@@ -3,9 +3,14 @@ import { View, Image, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useFonts, Ubuntu_400Regular } from '@expo-google-fonts/ubuntu';
 import { Button, TextInput, Portal, Dialog, Paragraph} from 'react-native-paper';
+import { initializefb } from './Firebase';
+
+initializefb()
 
 import * as firebase from 'firebase';
 import 'firebase/auth';
+
+
 const auth = firebase.auth();
 
 export default function Landing() {

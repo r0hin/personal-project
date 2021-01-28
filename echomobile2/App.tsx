@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AppLoading } from 'expo'
 
-import { auth } from './Components/auth/Firebase';
+import { auth, initializefb } from './Components/auth/Firebase';
 import AuthUserContext, { AuthUserProvider } from './Components/auth/AuthUserProvider';
 import { Provider as PaperProvider, Text } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,6 +20,8 @@ import { useFonts, Ubuntu_400Regular, Ubuntu_300Light, Ubuntu_500Medium, Ubuntu_
 import * as firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
+
+initializefb()
 
 const db = firebase.firestore()
 const Stack = createStackNavigator();
@@ -39,27 +41,42 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true);
-    // onAuthStateChanged returns an unsubscriber
+    // // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = auth.onAuthStateChanged(async authUser => {
-      try {
-        console.log('New User!');
-        await (authUser ? setUser(authUser) : setUser(null));
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-      console.log(authUser);
-      if (!authUser) {
-        setShowHome(false)
+      await (authUser ? setUser(authUser) : setUser(null));
+
+      if (authUser) {
+        console.log('Signed in.');
+        setShowHome(true)
       }
       else {
-        // Show home page
-        setShowHome(true)
-        console.log('Showing HOme');
+        console.log('Signed out.');
+        setShowHome(false)
       }
-    });
 
-    // unsubscribe auth listener on unmount
+      setIsLoading(false);
+
+    }) 
+    
+    //   try {
+    //     console.log('
+    //   }
+    //   console.log(authUser);
+    //   if (!authUser) {
+    //     setShowHome(false)
+    //   }
+    //   else {
+    //     // Show home page
+    //     setShowHome(true)
+    //     console.log('Showing HOme');
+    //   }New User!');
+    //     await (authUser ? setUser(authUser) : setUser(null));
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     console.log(error);
+    // });
+
+    // // unsubscribe auth listener on unmount
     return unsubscribeAuth;
   }, []);
 

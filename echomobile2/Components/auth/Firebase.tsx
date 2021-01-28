@@ -13,11 +13,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase App
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+initializefb()
+export async function initializefb() {
+  if (!firebase.apps.length) {
+    await firebase.initializeApp(firebaseConfig);
+  }  
 }
-
 export const auth = firebase.auth();
 
 export const loginWithEmail = (email: string, password: string) =>
