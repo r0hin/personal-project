@@ -11,16 +11,9 @@ export interface TabAccountProps {
 }
  
 class TabAccount extends Component<TabAccountProps> {
-  state = {
-    opacity: new Animated.Value(0),
-  }
 
   componentDidMount() {
-    Animated.timing(this.state.opacity, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
+   
   }
 
   render() {
@@ -44,12 +37,10 @@ class TabAccount extends Component<TabAccountProps> {
 
     return (
       <View style={{display: this.props.shown ? 'flex' : 'none'}}>
-        <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
-          <Text style={[styles.title, {color: colors.text}]}>Account</Text>
-          <View style={styles.container}>
-            <Button style={styles.signOutButton} onPress={logout} mode="outlined">Sign Out</Button>
-          </View>
-        </Animated.View>
+        <Text style={[styles.title, {color: colors.text}]}>Account</Text>
+        <View style={styles.container}>
+          <Button style={styles.signOutButton} onPress={logout} mode="outlined">Sign Out</Button>
+        </View>
       </View>
     );
   }

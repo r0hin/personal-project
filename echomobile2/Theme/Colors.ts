@@ -21,37 +21,37 @@ const fonts = configureFonts({
   },
   ios: {
     regular: {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Ubuntu_400Regular',
       fontWeight: 'normal',
     },
     medium: {
-      fontFamily: 'sans-serif-medium',
+      fontFamily: 'Ubuntu_500Medium',
       fontWeight: 'normal',
     },
     light: {
-      fontFamily: 'sans-serif-light',
+      fontFamily: 'Ubuntu_300Light',
       fontWeight: 'normal',
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'Ubuntu_300Light',
       fontWeight: 'normal',
     },
   },
   android: {
     regular: {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Ubuntu_400Regular',
       fontWeight: 'normal',
     },
     medium: {
-      fontFamily: 'sans-serif-medium',
+      fontFamily: 'Ubuntu_500Medium',
       fontWeight: 'normal',
     },
     light: {
-      fontFamily: 'sans-serif-light',
+      fontFamily: 'Ubuntu_300Light',
       fontWeight: 'normal',
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'Ubuntu_300Light',
       fontWeight: 'normal',
     },
   }

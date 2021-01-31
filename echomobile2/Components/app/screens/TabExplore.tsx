@@ -9,15 +9,10 @@ export interface TabExploreProps {
  
 class TabExplore extends Component<TabExploreProps> {
   state = {
-    opacity: new Animated.Value(0),
   }
 
   componentDidMount() {
-    Animated.timing(this.state.opacity, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
+;
   }
 
   render() {
@@ -33,9 +28,7 @@ class TabExplore extends Component<TabExploreProps> {
 
     return (
       <View style={{display: this.props.shown ? 'flex' : 'none'}}>
-        <Animated.View {...this.props} style={[ { opacity: this.state.opacity, transform: [ { scale: this.state.opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1], }) }, ], }, ]} >
-          <Text style={[styles.title, {color: colors.text}]}>Explore</Text>
-        </Animated.View>
+        <Text style={[styles.title, {color: colors.text}]}>Explore</Text>
       </View>
     );
   }

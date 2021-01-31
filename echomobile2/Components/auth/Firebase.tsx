@@ -16,6 +16,7 @@ const firebaseConfig = {
 initializefb()
 export async function initializefb() {
   if (!firebase.apps.length) {
+    console.log('Init');
     await firebase.initializeApp(firebaseConfig);
   }  
 }

@@ -48,7 +48,7 @@ export default function Landing() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ flex: 1, padding: 32, justifyContent: 'center' }}>
+    <ScrollView contentContainerStyle={{ flex: 1, padding: 32, justifyContent: 'center', backgroundColor: colors.background }}>
       <View style={{alignItems: 'center', paddingBottom: 12}}>
         <Image style={styles.image} source={colors.card === 'rgb(255, 255, 255)' ? require('../../assets/Light.png') : require('../../assets/Dark.png')}></Image>
       </View>
