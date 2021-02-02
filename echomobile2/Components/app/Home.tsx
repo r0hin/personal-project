@@ -10,14 +10,21 @@ import TabInbox from '../app/screens/InboxTab';
 
 import '../auth/Firebase'
 import DetailsScreen from './navigation/Details'
+import { useState } from 'react';
 
 const HomeStack = createStackNavigator();
 
 function HomeStackScreen() {
+  const [activePost, setActivePost] = useState('')
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={TabHome} />
-      <HomeStack.Screen name="Details" component={DetailsScreen} />
+      <HomeStack.Screen name="Home">
+        {props => <TabHome {...props} extraData={setActivePost} />}
+      </HomeStack.Screen>
+
+      <HomeStack.Screen name="Details">
+        {props => <DetailsScreen {...props} extraData={activePost} />}
+      </HomeStack.Screen>
     </HomeStack.Navigator>
   );
 }

@@ -1,7 +1,6 @@
 import React, { Component, Dispatch, SetStateAction } from 'react';
 import { View, StyleSheet, Text, Animated } from 'react-native';
 import Post from '../../app/elements/Post';
-import { useFonts, Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 
 export interface TabHomeProps {
   colors: any,

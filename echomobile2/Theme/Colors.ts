@@ -77,7 +77,9 @@ export const LightMode = {
 
     primary: 'rgb(51, 147, 226)',
     secondary: '#4548fc',
+    theme: 'light',
 
+    glass: 'rgb(255, 255, 255, 0.5)',
     card: 'rgb(255, 255, 255)',
     text: 'rgb(28, 28, 30)',
     border: 'rgba(199, 199, 204, 0)',
@@ -89,13 +91,15 @@ export const DarkMode = {
   ...DefaultTheme,
   dark: true,
   colors: {
-    background: 'rgb(31, 33, 40)',
+    background: '#22262F',
     background2: 'rgb(36, 38, 46)',
     background3: 'rgb(46, 49, 59)',
 
     primary: 'rgb(51, 147, 226)',
     secondary: '#4548fc',
+    theme: 'dark',
 
+    glass: 'rgb(0, 0, 0, 0.5)',
     card: 'rgb(20, 23, 26)',
     text: 'rgb(245, 248, 250)',
     border: 'rgba(199, 199, 204, 0)',
